@@ -364,10 +364,11 @@
         pointer-events: none;
       }
       .nav-links.open {
-        max-height: 600px;
+        max-height: 800px;
         padding: 16px 20px 24px;
         opacity: 1;
         pointer-events: all;
+        overflow-y: auto;
       }
       .nav-links > li { width: 100%; }
       .nav-links > li > a,
@@ -4183,6 +4184,16 @@
     aboutToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       aboutDropdown.classList.toggle('open');
+      // Force dropdown links to be white via JS as final fallback
+      const dropLinks = aboutDropdown.querySelectorAll('.dropdown-menu a');
+      dropLinks.forEach(link => {
+        link.style.setProperty('color', '#ffffff', 'important');
+        link.style.setProperty('background', 'none', 'important');
+        link.style.setProperty('display', 'block', 'important');
+        link.style.setProperty('padding', '12px 16px', 'important');
+        link.style.setProperty('font-size', '0.95rem', 'important');
+        link.style.setProperty('font-weight', '500', 'important');
+      });
     });
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
