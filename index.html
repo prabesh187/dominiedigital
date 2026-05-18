@@ -384,11 +384,15 @@
         border-radius: 10px;
         margin-top: 0;
         padding: 0 0 0 16px;
-        opacity: 1;
-        pointer-events: all;
+        opacity: 1 !important;
+        pointer-events: all !important;
         display: none;
+        transition: none;
       }
-      .nav-dropdown.open .dropdown-menu { display: block; }
+      .nav-dropdown.open .dropdown-menu {
+        display: block;
+        opacity: 1 !important;
+      }
       .dropdown-menu li { width: 100%; }
       .dropdown-menu li a,
       .mobile-drop-link {
