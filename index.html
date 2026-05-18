@@ -388,29 +388,15 @@
         display: none;
       }
       .nav-dropdown.open .dropdown-menu { display: block; }
-      .dropdown-menu a,
-      .dropdown-menu li a {
+      .mobile-drop-link {
         padding: 12px 16px;
-        color: rgba(255,255,255,0.75) !important;
-        -webkit-text-fill-color: rgba(255,255,255,0.75) !important;
         font-size: 0.95rem;
         font-weight: 600;
         border-radius: 8px;
-        background: none !important;
         margin-bottom: 4px;
         display: block;
-      }
-      .dropdown-menu a:hover,
-      .dropdown-menu li a:hover {
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
-        background: none !important;
-      }
-      /* About toggle letters visible on mobile */
-      #aboutToggle,
-      #aboutToggle .nav-letter {
-        color: rgba(255,255,255,0.75) !important;
-        -webkit-text-fill-color: rgba(255,255,255,0.75) !important;
+        color: rgba(255,255,255,0.75);
+        text-decoration: none;
       }
     }
     /* ===== HERO ===== */
@@ -2843,10 +2829,8 @@
   <!-- Dropdown link color fix - mobile only -->
   <style>
     @media (max-width: 900px) {
-      #navbar .dropdown-menu li a,
-      #navbar .dropdown-menu a {
+      .mobile-drop-link {
         color: rgba(255,255,255,0.75) !important;
-        -webkit-text-fill-color: rgba(255,255,255,0.75) !important;
       }
     }
   </style>
@@ -2873,7 +2857,7 @@
         <p class="notice-message">
           We are <strong>open and fully operational</strong> — ready to help you build your brand and grow your business.<br><br>
           Have a project in mind? Our team is available <strong>Sunday to Friday, 9:00 AM – 6:00 PM</strong>. Reach out to us anytime and we will get back to you promptly.<br><br>
-          📧 <strong>dominiedigitalmarketing@gmail.com</strong>
+          📧 <strong>dominiemarketing@gmail.com</strong>
         </p>
       </div>
       <div class="notice-footer">
@@ -2906,8 +2890,8 @@
             </svg>
           </span>
           <ul class="dropdown-menu">
-            <li><a href="#about">About</a></li>
-            <li><a href="team.html">Team</a></li>
+            <li><a href="#about" class="mobile-drop-link">About</a></li>
+            <li><a href="team.html" class="mobile-drop-link">Team</a></li>
           </ul>
         </li>
         <li><a href="#contact" class="nav-cta"><span class="nav-letter">C</span><span class="nav-letter">o</span><span class="nav-letter">n</span><span class="nav-letter">t</span><span class="nav-letter">a</span><span class="nav-letter">c</span><span class="nav-letter">t</span></a></li>
@@ -3592,7 +3576,7 @@
             <div class="info-icon">&#x1F4E7;</div>
             <div class="info-content">
               <h4>Email</h4>
-              <p>dominiedigitalmarketing@gmail.com</p>
+              <p>dominiemarketing@gmail.com</p>
             </div>
           </div>
           <div class="info-item">
@@ -3647,7 +3631,7 @@
           <h4>Contact</h4>
           <ul>
             <li>Kathmandu, Nepal</li>
-            <li>dominiedigitalmarketing@gmail.com</li>
+            <li>dominiemarketing@gmail.com</li>
             <li>+977  970-8835661 / +977 981-9198377</li>
             <li>Sun-Fri: 9 AM - 6 PM</li>
           </ul>
