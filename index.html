@@ -3544,7 +3544,7 @@
       </div>
       <div class="contact-grid">
         <div class="contact-form reveal">
-          <form id="contactForm" novalidate>
+          <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
             <div class="form-group">
               <label for="fullName">Full Name</label>
               <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
@@ -4380,7 +4380,7 @@
     // ===== CONTACT FORM =====
     const contactForm = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = document.getElementById('fullName').value.trim();
       const email = document.getElementById('email').value.trim();
@@ -4395,14 +4395,29 @@
         alert('Please enter a valid email address.');
         return;
       }
-      // Show success message
-      contactForm.querySelector('.form-submit').disabled = true;
-      contactForm.querySelector('.form-submit').textContent = 'Sending...';
-      setTimeout(() => {
-        formSuccess.style.display = 'block';
-        contactForm.querySelector('.form-submit').style.display = 'none';
-        contactForm.reset();
-      }, 800);
+      const submitBtn = contactForm.querySelector('.form-submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(contactForm)
+        });
+        if (response.ok) {
+          formSuccess.style.display = 'block';
+          submitBtn.style.display = 'none';
+          contactForm.reset();
+        } else {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message →';
+          alert('Something went wrong. Please try again or email us directly.');
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message →';
+        alert('Network error. Please try again.');
+      }
     });
 
     // ===== IMAGE LIGHTBOX =====
