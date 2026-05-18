@@ -4216,40 +4216,47 @@
         hamburger.classList.remove('open');
         navLinks.classList.remove('open');
         // also close dropdown
-        aboutDropdown.classList.remove('open');
+        closeAboutDropdown();
       });
     });
 
     // ===== ABOUT DROPDOWN =====
     const aboutDropdown = document.getElementById('aboutDropdown');
     const aboutToggle = document.getElementById('aboutToggle');
-    aboutToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      aboutDropdown.classList.toggle('open');
-      // Force dropdown links to be white via JS as final fallback
-      const dropLinks = aboutDropdown.querySelectorAll('.dropdown-menu a');
-      dropLinks.forEach(link => {
-        link.style.setProperty('color', '#ffffff', 'important');
-        link.style.setProperty('background', 'none', 'important');
-        link.style.setProperty('display', 'block', 'important');
-        link.style.setProperty('padding', '12px 16px', 'important');
-        link.style.setProperty('font-size', '0.95rem', 'important');
-        link.style.setProperty('font-weight', '500', 'important');
-        link.style.setProperty('opacity', '1', 'important');
-        link.style.setProperty('visibility', 'visible', 'important');
-      });
-      // Also force the menu itself visible
+
+    function closeAboutDropdown() {
+      aboutDropdown.classList.remove('open');
+      // Clear all forced inline styles so CSS can hide it again
       const menu = aboutDropdown.querySelector('.dropdown-menu');
       if (menu) {
-        menu.style.setProperty('opacity', '1', 'important');
-        menu.style.setProperty('transform', 'none', 'important');
-        menu.style.setProperty('visibility', 'visible', 'important');
+        menu.style.removeProperty('opacity');
+        menu.style.removeProperty('transform');
+        menu.style.removeProperty('visibility');
+        menu.style.removeProperty('display');
+      }
+      aboutDropdown.querySelectorAll('.dropdown-menu a').forEach(link => {
+        link.style.removeProperty('color');
+        link.style.removeProperty('background');
+        link.style.removeProperty('display');
+        link.style.removeProperty('opacity');
+        link.style.removeProperty('visibility');
+      });
+    }
+
+    aboutToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = aboutDropdown.classList.contains('open');
+      if (isOpen) {
+        closeAboutDropdown();
+      } else {
+        aboutDropdown.classList.add('open');
       }
     });
+
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
       if (!aboutDropdown.contains(e.target)) {
-        aboutDropdown.classList.remove('open');
+        closeAboutDropdown();
       }
     });
 
